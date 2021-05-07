@@ -5,31 +5,31 @@ import java.io.*;
 
 public class removeStringDuplicate {
 
-    public static String remDuplicate(String str,int current,int next,String result)
+    public static String remDuplicate(String str,int currPtr,int nextPtr,String newStr)
     {
-        if(next==str.length())
+        if(nextPtr==str.length())
         {
-            result = result + str.charAt(current);
-            return result;
+            newStr = newStr + str.charAt(currPtr);
+            return newStr;
         }
-        else if(str.charAt(current)!=str.charAt(next) && current<str.length() && next<str.length())
+        else if(str.charAt(currPtr)!=str.charAt(nextPtr) && currPtr<str.length() && nextPtr<str.length())
         {
-            result= result + str.charAt(current);
-            result = remDuplicate(str, current+1, next+1,result);
+            newStr= newStr + str.charAt(currPtr);
+            newStr = remDuplicate(str, currPtr+1, nextPtr+1,newStr);
         }
-        else if(str.charAt(current)==str.charAt(next) && current<str.length() && next<str.length())
+        else if(str.charAt(currPtr)==str.charAt(nextPtr) && currPtr<str.length() && nextPtr<str.length())
         {
-            result = remDuplicate(str, current+1, next+1,result);
+            newStr = remDuplicate(str, currPtr+1, nextPtr+1,newStr);
         }
-        return result;
+        return newStr;
     }
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the string:");
         String str = br.readLine();
-        int current=0,next=1;
-        String result = "";
-        String s = remDuplicate(str,current,next,result);
-        System.out.println(s);
+        int currPtr=0,nextPtr=1;
+        String newStr = "";
+        String result = remDuplicate(str,currPtr,nextPtr,newStr);
+        System.out.println(result);
     }
 }

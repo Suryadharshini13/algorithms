@@ -4,55 +4,55 @@ import java.util.*;
 
 public class addArray {
 
-    public static void splitNum(List<Integer> c,int n)
+    public static void splitNum(List<Integer> resultArr,int sum)
     {
-        if(n>0)
+        if(sum>0)
         {
-            splitNum(c,n/10);
-            c.add(n%10);
+            splitNum(resultArr,sum/10);
+            resultArr.add(sum%10);
         }
     }
-    public static void add(int[] a,int[] b,List<Integer> c,int alength,int blength,int a_current,int b_current)
+    public static void add(int[] arrA,int[] arrB,List<Integer> resultArr,int arrA_len,int arrB_len,int A_currPtr,int B_currPtr)
     {
-        if(a_current<alength && b_current< blength)
+        if(A_currPtr<arrA_len && B_currPtr< arrB_len)
         {
-            int t =a[a_current]+b[b_current];
-            splitNum(c,t);
-            add(a,b,c,alength,blength,a_current+1,b_current+1);
+            int sum =arrA[A_currPtr]+arrB[B_currPtr];
+            splitNum(resultArr,sum);
+            add(arrA,arrB,resultArr,arrA_len,arrB_len,A_currPtr+1,B_currPtr+1);
         }
-        else if(a_current<alength)
+        else if(A_currPtr<arrA_len)
         {
-            splitNum(c,a[a_current]);
-            add(a,b,c,alength,blength,a_current+1,b_current+1);
+            splitNum(resultArr,arrA[A_currPtr]);
+            add(arrA,arrB,resultArr,arrA_len,arrB_len,A_currPtr+1,B_currPtr+1);
         }
-        else if(b_current<blength)
+        else if(B_currPtr<arrB_len)
         {
-            splitNum(c,b[b_current]);
-            add(a, b, c, alength, blength, a_current+1, b_current+1);
+            splitNum(resultArr,arrB[B_currPtr]);
+            add(arrA, arrB, resultArr, arrA_len, arrB_len, A_currPtr+1, B_currPtr+1);
         }
         }
     public static void main(String[] args) {
         Scanner scan= new Scanner(System.in);
         System.out.println("Enter the number of element in Array A");
-        int alength = scan.nextInt();
+        int arrA_len = scan.nextInt();
         System.out.println("Enter Array A elements");
-        int[] a = new int[alength];
-        for(int i=0;i<alength;i++)
+        int[] arrA = new int[arrA_len];
+        for(int i=0;i<arrA_len;i++)
         {
-            a[i] = scan.nextInt();
+            arrA[i] = scan.nextInt();
         }
         System.out.println("Enter the number of element in Array B");
-        int blength = scan.nextInt();
+        int arrB_len = scan.nextInt();
         System.out.println("Enter Array B elements");
-        int[] b = new int[blength];
-        for(int i=0;i<blength;i++)
+        int[] arrB = new int[arrB_len];
+        for(int i=0;i<arrB_len;i++)
         {
-            b[i]=scan.nextInt();
+            arrB[i]=scan.nextInt();
         }
-        List<Integer> c = new ArrayList<>();
-        int a_current=0,b_current=0;
-        add(a,b,c,alength,blength,a_current,b_current);
-        System.out.println(c);
+        List<Integer> resultArr = new ArrayList<>();
+        int A_currPtr=0,B_currPtr=0;
+        add(arrA,arrB,resultArr,arrA_len,arrB_len,A_currPtr,B_currPtr);
+        System.out.println(resultArr);
     }
 
 }
