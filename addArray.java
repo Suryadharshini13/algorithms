@@ -12,46 +12,46 @@ public class addArray {
             c.add(n%10);
         }
     }
-    public static void add(int[] a,int[] b,List<Integer> c,int alen,int blen,int af,int bf)
+    public static void add(int[] a,int[] b,List<Integer> c,int alength,int blength,int a_current,int b_current)
     {
-        if(af<alen && bf< blen)
+        if(a_current<alength && b_current< blength)
         {
-            int t =a[af]+b[bf];
+            int t =a[a_current]+b[b_current];
             splitNum(c,t);
-            add(a,b,c,alen,blen,af+1,bf+1);
+            add(a,b,c,alength,blength,a_current+1,b_current+1);
         }
-        else if(af<alen)
+        else if(a_current<alength)
         {
-            splitNum(c,a[af]);
-            add(a,b,c,alen,blen,af+1,bf+1);
+            splitNum(c,a[a_current]);
+            add(a,b,c,alength,blength,a_current+1,b_current+1);
         }
-        else if(bf<blen)
+        else if(b_current<blength)
         {
-            splitNum(c,b[bf]);
-            add(a, b, c, alen, blen, af+1, bf+1);
+            splitNum(c,b[b_current]);
+            add(a, b, c, alength, blength, a_current+1, b_current+1);
         }
         }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scan= new Scanner(System.in);
         System.out.println("Enter the number of element in Array A");
-        int alen = sc.nextInt();
+        int alength = scan.nextInt();
         System.out.println("Enter Array A elements");
-        int[] a = new int[alen];
-        for(int i=0;i<alen;i++)
+        int[] a = new int[alength];
+        for(int i=0;i<alength;i++)
         {
-            a[i] = sc.nextInt();
+            a[i] = scan.nextInt();
         }
         System.out.println("Enter the number of element in Array B");
-        int blen = sc.nextInt();
+        int blength = scan.nextInt();
         System.out.println("Enter Array B elements");
-        int[] b = new int[blen];
-        for(int i=0;i<blen;i++)
+        int[] b = new int[blength];
+        for(int i=0;i<blength;i++)
         {
-            b[i]=sc.nextInt();
+            b[i]=scan.nextInt();
         }
         List<Integer> c = new ArrayList<>();
-        int af=0,bf=0;
-        add(a,b,c,alen,blen,af,bf);
+        int a_current=0,b_current=0;
+        add(a,b,c,alength,blength,a_current,b_current);
         System.out.println(c);
     }
 
