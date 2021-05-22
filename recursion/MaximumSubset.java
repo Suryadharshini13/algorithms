@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class MaximumSubset {
     public static int maximumSubset(int[] arr, int pos, int product) {
         if (pos == arr.length) return product;
